@@ -3,60 +3,33 @@ import './App.css'
 import { Link } from "react-router-dom";
 function App() {
     return (
-
-
-        <>
-
-
-                <div>FilmInsight</div>
-                <div>
-                    <button className="mr-4">
-                        <Link to="/" className="text-black">
-                            Home
-                        </Link>
-                    </button>
-                    <button className="mr-4">
-                        <Link to="/songs/" className="text-black">
-                            Movies
-                        </Link>
-                    </button>
-                    <button>
-                        <Link to="/about" className="text-black">
-                            About
-                        </Link>
-                    </button>
-                </div>
-
-
-
+        <div>
+            <div className="text-5xl pb-3 italic font-bold text-blue-800">
+                SongShare
+            </div>
+            <div className="pb-6">
+                <button className="mr-2 bg-blue-500">
+                    <Link to="/" className="text-white">
+                        Home
+                    </Link>
+                </button>
+                <button className="mr-2 bg-blue-500">
+                    <Link to="/songs/" className="text-white">
+                        Songs
+                    </Link>
+                </button>
+                <button className="mr-2 bg-blue-500">
+                    <Link to="/about" className="text-white">
+                        About
+                    </Link>
+                </button>
+            </div>
             <Outlet/>
-
-
-        </>
-
-
+        </div>
     )
-
 }
 
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

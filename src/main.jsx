@@ -24,7 +24,6 @@ const router = createBrowserRouter([
             {
                 path:'/about',
                 element:<About/>
-
             },
             {
                 path: '/songs/:songId',
@@ -35,13 +34,8 @@ const router = createBrowserRouter([
                 element:<Data/>
             }
         ]
-
-
     }
 ])
-
-
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>

@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About(props) {
-    const [likes, setLikes] = useState(0);
-
+export default function About() {
     return (
         <div className="About">
-            <h4>About {props.name}</h4>
-            <p>Let's learn all about {props.name}</p>
-            <p>Number of likes: {likes}</p>
-            <button onClick={() => {
-                console.log("another like!");
-                setLikes(likes + 1);
-            }}>Like</button>
+            <div className="text-white text-xl">
+                <p>At SongShare, we believe that music is more than just sound; it's a universal language that binds us together. Our platform is designed for music enthusiasts like you to discover, share, and celebrate the songs that resonate with your soul.</p>
+            </div>
         </div>
     );
 }
+

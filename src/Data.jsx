@@ -5,7 +5,7 @@ function Data() {
     // useState
     const [songs, setSongs] = useState([]);
     const [newSong, setNewSong] = useState({ title: "", album: "", artist: "" });
-    const [editSong, setEditSong] = useState(null); // State to manage which song is being edited
+    const [editSong, setEditSong] = useState(null);
 
     // Fetch songs with GET
     const getSongs = async () => {
@@ -39,7 +39,6 @@ function Data() {
             if (response.ok) {
                 const result = await response.json();
                 console.log("Success:", result);
-                // Assuming you want to update the song list after posting a new song
                 getSongs();
             } else {
                 console.error("Error:", response.statusText);
@@ -64,7 +63,6 @@ function Data() {
             if (response.ok) {
                 const result = await response.json();
                 console.log("Success:", result);
-                // Assuming you want to update the song list after updating a song
                 getSongs();
             } else {
                 console.error("Error:", response.statusText);
@@ -83,7 +81,6 @@ function Data() {
 
             if (response.ok) {
                 console.log("Song deleted successfully");
-                // Assuming you want to update the song list after deleting a song
                 getSongs();
             } else {
                 console.error("Error deleting song:", response.statusText);
@@ -124,20 +121,17 @@ function Data() {
                 updateSong={updateSong}
                 deleteSong={deleteSong}
                 openEditPopup={openEditPopup}
+                newSong={newSong}
+                handleInputChange={handleInputChange}
+                postSongs={postSongs}
             />
-            <form onSubmit={(e) => { e.preventDefault(); postSongs(newSong); }}>
-                <input type="text" name="title" placeholder="Title" value={newSong.title} onChange={handleInputChange} required />
-                <input type="text" name="album" placeholder="Album" value={newSong.album} onChange={handleInputChange} required />
-                <input type="text" name="artist" placeholder="Artist" value={newSong.artist} onChange={handleInputChange} required />
-                <button type="submit">Add New Song</button>
-            </form>
 
-            {/* Edit pop-up */}
             {editSong && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-                    <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <div className="bg-white w-96 p-8 rounded-lg shadow-lg">
                         <h2 className="text-xl font-bold mb-4">Edit Song</h2>
                         <input
+                            className="block w-full p-2 border border-gray-300 rounded mb-2"
                             type="text"
                             name="title"
                             placeholder="Title"
@@ -146,6 +140,7 @@ function Data() {
                             required
                         />
                         <input
+                            className="block w-full p-2 border border-gray-300 rounded mb-2"
                             type="text"
                             name="album"
                             placeholder="Album"
@@ -154,6 +149,7 @@ function Data() {
                             required
                         />
                         <input
+                            className="block w-full p-2 border border-gray-300 rounded mb-2"
                             type="text"
                             name="artist"
                             placeholder="Artist"
@@ -161,7 +157,7 @@ function Data() {
                             onChange={(e) => setEditSong({ ...editSong, artist: e.target.value })}
                             required
                         />
-                        <div className="flex justify-end mt-4">
+                        <div className="mt-4">
                             <button
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
                                 onClick={() => {

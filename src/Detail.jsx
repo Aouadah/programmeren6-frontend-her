@@ -29,12 +29,21 @@ function DetailPage() {
     }, [songId]); // Fetch song details whenever songId changes
 
     return (
-        <div>
+        <div className="bg-indigo-300 p-4 rounded">
             {song && (
-                <div>
-                    <h2>Title: {song.title}</h2>
-                    <p>Album: {song.album}</p>
-                    <p>Artist: {song.artist}</p>
+                <div className="mb-4 text-white text-lg">
+                    <div className="p-4">
+                        <p className="font-bold">Title:</p>
+                        <p>{song.title}</p>
+                    </div>
+                    <div className="p-4">
+                        <p className="font-bold">Album:</p>
+                        <p>{song.album}</p>
+                    </div>
+                    <div className="p-4">
+                        <p className="font-bold">Artist:</p>
+                        <p>{song.artist}</p>
+                    </div>
                 </div>
             )}
         </div>

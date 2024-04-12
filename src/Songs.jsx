@@ -1,25 +1,56 @@
 import './App.css';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Songs({ songs, updateSong, deleteSong, closeSongDetails, openEditPopup, closeEditPopup }) {
+function Songs({ songs, updateSong, deleteSong, openEditPopup, newSong, handleInputChange, postSongs }) {
     return (
-        <div>
-            <div>
-                <h2>Song List</h2>
-                <ul>
-                    {songs.map((song) => (
-                        <li key={song._id} className="mb-4">
-                            <p className="text-lg font-bold">Title: {song.title}</p>
+        <div className="bg-indigo-300 p-4 rounded">
+            <h2 className="text-xl text-white font-bold">Add a new song</h2>
+            <div className="p-4">
+                <form onSubmit={(e) => { e.preventDefault(); postSongs(newSong); }}>
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        value={newSong.title}
+                        onChange={handleInputChange}
+                        required
+                        className="m-1"
+                    />
+                    <input
+                        type="text"
+                        name="album"
+                        placeholder="Album"
+                        value={newSong.album}
+                        onChange={handleInputChange}
+                        required
+                        className="m-1"
+                    />
+                    <input
+                        type="text"
+                        name="artist"
+                        placeholder="Artist"
+                        value={newSong.artist}
+                        onChange={handleInputChange}
+                        required
+                        className="m-1"
+                    />
+                    <button type="submit" className="m-2">Add New Song</button>
+                </form>
+            </div>
+            <ul className="text-white">
+                {songs.map((song) => (
+                    <li key={song._id} className="mb-4 flex justify-between items-center">
+                        <p className="text-lg font-bold">{song.title}</p>
+                        <div>
                             <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                             >
-                                {/*<Link to={`/song/${song._id}`}>View Details</Link>*/}
                                 <Link to={`/songs/${song._id}`} className="text-white">
                                     Details
                                 </Link>
                             </button>
                             <button
-                                className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                                className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
                                 onClick={() => openEditPopup(song)}
                             >
                                 Edit
@@ -30,12 +61,12 @@ function Songs({ songs, updateSong, deleteSong, closeSongDetails, openEditPopup,
                             >
                                 Delete
                             </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-export default Songs
+export default Songs;
